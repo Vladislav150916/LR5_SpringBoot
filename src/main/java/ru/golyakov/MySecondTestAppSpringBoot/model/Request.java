@@ -1,3 +1,4 @@
+
 package ru.golyakov.MySecondTestAppSpringBoot.model;
 
 import jakarta.validation.constraints.Max;
@@ -15,21 +16,80 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Request {
 
-    @NotBlank
+    /**
+     * Уникальный идентификатор запроса.
+     */
+    @NotBlank(message = "UID не может быть пустым")
     @Size(max = 32)
     private String uid;
-    @NotBlank
+
+    /**
+     * Уникальный идентификатор операции.
+     */
     @Size(max = 32)
     private String operationUid;
+
+    /**
+     * Наименование системы, отправившей запрос.
+     */
     private Systems systemName;
+
+    /**
+     * Дата и время формирования запроса.
+     */
     @NotBlank
     private String systemTime;
+
+    /**
+     * Источник поступления запроса.
+     */
     private String source;
+
+    /**
+     * Должность сотрудника, для которого рассчитывается премия.
+     */
+    private Positions position;
+
+    /**
+     * Размер заработной платы сотрудника.
+     */
+    private Double salary;
+
+    /**
+     * Множитель для расчёта премии сотрудника.
+     */
+    private Double bonus;
+
+    /**
+     * Количество календарных дней, отработанных сотрудником за год.
+     */
+    private Integer workDays;
+
+    /**
+     * Год, за который производится расчёт премии.
+     */
+    private Integer year;
+
+    /**
+     * Идентификатор коммуникации.
+     */
     @Min(1)
     @Max(100000)
     private int communicationId;
+
+    /**
+     * Идентификатор шаблона сообщения.
+     */
     private int templateId;
+
+    /**
+     * Код продукта.
+     */
     private int productCode;
+
+    /**
+     * Код SMS-сообщения.
+     */
     private int smsCode;
 
     @Override
@@ -46,5 +106,4 @@ public class Request {
                 ", smsCode=" + smsCode +
                 '}';
     }
-
 }
